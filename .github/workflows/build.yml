@@ -17,7 +17,9 @@ jobs:
           uses: actions/checkout@v3
 
         - name: Set up Make
-          run: sudo apt-get install make ninja
+          run: |
+            sudo apt-get update
+            sudo apt-get install make ninja-build cmake
 
         - name: Build with Make
           run: make
