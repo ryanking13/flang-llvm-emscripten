@@ -1,2 +1,5 @@
 llvm-project
 build
+dist
+host
+wasm

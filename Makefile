@@ -5,6 +5,7 @@ PREFIX = $(ROOT)
 
 HOST = $(PREFIX)/host
 WASM = $(PREFIX)/wasm
+DIST = $(PREFIX)/dist
 
 FLANG_BIN = $(BUILD)/bin/flang-new
 
@@ -64,8 +65,11 @@ $(BUILD)%.o : $(SOURCE)%.cpp
 install: $(FLANG_BIN) $(RUNTIME_LIB)
 	mkdir -p $(HOST)/bin
 	mkdir -p $(WASM)/lib
+	mkdir -p $(DIST)
 	install -m 755 $(FLANG_BIN) $(HOST)/bin
 	install -m 644 $(RUNTIME_LIB) $(WASM)/lib
+	install -m 755 $(FLANG_BIN) $(DIST)
+	install -m 644 $(RUNTIME_LIB) $(DIST)
 
 .PHONY: check
 check:
