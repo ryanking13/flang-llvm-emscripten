@@ -24,7 +24,7 @@ all: deps flang wasm-runtime
 
 .PHONY: check
 deps:
-  which emcc em++ ninja cmake || (echo "Please install emscripten, ninja, and cmake" && exit 1)
+	which emcc em++ ninja cmake || (echo "Please install emscripten, ninja, and cmake" && exit 1)
 
 .PHONY: download
 download: $(SOURCE)
