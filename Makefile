@@ -20,10 +20,10 @@ BRANCH_NAME = emscripten-3.1.58
 FLANG_WASM_CMAKE_VARS := $(FLANG_WASM_CMAKE_VARS)
 
 .PHONY: all
-all: check flang wasm-runtime
+all: deps flang wasm-runtime
 
 .PHONY: check
-check:
+deps:
   which emcc em++ ninja cmake || (echo "Please install emscripten, ninja, and cmake" && exit 1)
 
 .PHONY: download
