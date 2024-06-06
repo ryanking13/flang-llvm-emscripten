@@ -8,6 +8,12 @@ on:
         branches:
             - main
 
+env:
+  EMSCRIPTEN_VERSION: '3.1.58'
+  # Increase this value to reset cache if emscripten_version has not changed
+  EMSDK_CACHE_FOLDER: 'emsdk-cache'
+  EMSDK_CACHE_NUMBER: 0
+
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -20,6 +26,17 @@ jobs:
           run: |
             sudo apt-get update
             sudo apt-get install make ninja-build cmake
+        
+        - name: Cache emsdk
+          uses: actions/cache@v2
+          with:
+            path: ${{env.EMSDK_CACHE_FOLDER}}
+            key: ${{env.EMSDK_CACHE_NUMBER}}-${{env.EMSCRIPTEN_VERSION}}-${{ runner.os }}
+  
+        - uses: mymindstorm/setup-emsdk@v11
+          with:
+            version: ${{ env.EMSCRIPTEN_VERSION }}
+            actions-cache-folder: ${{env.EMSDK_CACHE_FOLDER}}
 
         - name: Build with Make
           run: make
