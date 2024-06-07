@@ -10,6 +10,9 @@ on:
         branches:
             - main
 
+permissions:
+  contents: write
+
 env:
   EMSCRIPTEN_VERSION: '3.1.58'
   # Increase this value to reset cache if emscripten_version has not changed
