@@ -41,7 +41,7 @@ jobs:
             actions-cache-folder: ${{env.EMSDK_CACHE_FOLDER}}
 
         - name: Build with Make
-          run: make
+          run: make && make install
 
         - name: Release
           uses: softprops/action-gh-release@v1
